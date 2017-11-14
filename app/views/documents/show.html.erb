@@ -3,6 +3,8 @@
 <p>
   <strong>Body:</strong>
   <%= @document.body %>
+  <hr>
+  <%= @document.get_data %>
 </p>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |

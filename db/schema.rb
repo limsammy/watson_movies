@@ -10,19 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927173107) do
+ActiveRecord::Schema.define(version: 20171114001059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "documents", force: :cascade do |t|
-    t.string   "body"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "cover_letter_file_name"
-    t.string   "cover_letter_content_type"
-    t.integer  "cover_letter_file_size"
-    t.datetime "cover_letter_updated_at"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  create_table "tones", force: :cascade do |t|
+    t.string   "tone_id"
+    t.float    "tone_score"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["document_id"], name: "index_tones_on_document_id", using: :btree
+  end
+
+  add_foreign_key "tones", "documents"
 end
