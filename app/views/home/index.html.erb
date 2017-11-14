@@ -1,0 +1,8 @@
+<%=form_tag "/home/search",method: :get, remote: true %>
+  <div>
+    <%=text_field_tag 'query', '', class: 'form-control rangepicker' %>
+  </div>
+<%=submit_tag "Search"%>
+<div id="data_cls">
+  <%= render partial: 'home/result', locals: { movies: @movies, query: @query} %>
+</div>

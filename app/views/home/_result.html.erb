@@ -1,0 +1,31 @@
+<%if query.present?%>
+  <% if movies.present?%>
+    <h3> Results for <%= query %></h3>
+      <% movies.each do |item| %>
+        <div>
+          <p>
+          <%= image_tag "https://image.tmdb.org/t/p/w500"+ "#{item.poster_path}",size: "192x172" %>
+          </p>
+          <p>
+            Title: <%= item.title%>
+          </p>
+          <p>
+            Overview: <%= item.overview%>
+          </p>
+          <p>
+            Populatity: <%= item.popularity%>
+          </p>
+          <p>
+            Adult: <%= item.adult%>
+          </p>
+          <p>
+            Review: <%= item.vote_average%>
+          </p>
+        </div>
+      <%end%>
+  <%else%>
+    <p>
+      No results found
+    </p>
+  <%end%>
+<%end%>
