@@ -15,6 +15,7 @@ gem 'simple_form'
 gem 'rest-client'
 gem 'faker'
 gem 'excon'
+gem 'themoviedb-api'
 
 group :development, :test do
   gem 'byebug', platform: :mri
