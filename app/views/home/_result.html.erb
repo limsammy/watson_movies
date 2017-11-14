@@ -19,7 +19,7 @@
             Adult: <%= item.adult%>
           </p>
           <p>
-            Review: <%= item.vote_average%>
+            Reviews: <%= Tmdb::Movie.reviews(item.id) %>
           </p>
         </div>
       <%end%>
