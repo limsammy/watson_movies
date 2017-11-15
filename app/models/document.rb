@@ -8,7 +8,6 @@ class Document < ApplicationRecord
       tone_score = tone['score'].to_f
       self.tones.create(tone_id: tone_name, tone_score: tone_score)
     end
-    binding.pry
   end
 
   def get_data
