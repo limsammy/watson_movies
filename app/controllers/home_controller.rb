@@ -20,6 +20,7 @@ class HomeController < ApplicationController
       @movies << hash
     end
     @movies
+    binding.pry
   end
 
   def get_movies_data(query)
