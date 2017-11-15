@@ -6,3 +6,5 @@
 <div id="data_cls">
   <%= render partial: 'home/result', locals: { movies: @movies, query: @query} %>
 </div>
+
+<%= Watson.new.get_reviews('iron man') %>
