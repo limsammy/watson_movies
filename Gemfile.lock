@@ -287,6 +287,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  nokogiri
   pg (~> 0.18)
   poltergeist
   pry
@@ -308,6 +309,9 @@ DEPENDENCIES
   vcr
   web-console
   webmock
+
+RUBY VERSION
+   ruby 2.4.1p111
 
 BUNDLED WITH
    1.16.0

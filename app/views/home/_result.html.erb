@@ -4,43 +4,18 @@
       <% movies.each do |item| %>
         <div>
           <p>
-          <%= image_tag "https://image.tmdb.org/t/p/w500"+ "#{item.poster_path}",size: "192x172" %>
+          <%= image_tag item[:image],size: "210x140" %>
           </p>
           <p>
-            Title: <%= item.title%>
+            Title: <%= item[:display_title]%>
           </p>
           <p>
-            Overview: <%= item.overview%>
+            Overview: <%= item[:summary_short]%>
           </p>
           <p>
-            Populatity: <%= item.popularity%>
-          </p>
-          <p>
-            Adult: <%= item.adult%>
-          </p>
-          <p>
-            <h3>Reviews:</h3>
-            <br>
-            <% if Tmdb::Movie.reviews(item.id).total_results == 0 %>
-              <i>No reviews found</i>
-            <% else %>
-              <% Tmdb::Movie.reviews(item.id).results.each do |review| %>
-                <b>Author:</b> <%= review.author %>
-                <br>
-                <b>Content:</b> <%= review.content %>
-                <br>
-                <h4>Analysis:</h4>
-                <% Watson.new.get_data(review.content).each do |tone| %>
-                  <span><b><%= tone['tone_name'] %>:</b> <p>%<%= tone['score'] * 100 %></p></span>
-                <% end %>
-                <br>
-                <hr>
-                <br>
-              <% end %>
-            <% end %>
+            Reviews: <%= item[:review]%>
           </p>
         </div>
-            <hr>
       <%end%>
   <%else%>
     <p>

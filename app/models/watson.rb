@@ -7,7 +7,6 @@ class Watson
     request = Net::HTTP::Get.new(uri.request_uri)
     @result = JSON.parse(http.request(request).body)
     puts @result.inspect
-    binding.pry
   end
 
   def get_data(content)

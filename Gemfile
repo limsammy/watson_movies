@@ -16,7 +16,7 @@ gem 'rest-client'
 gem 'faker'
 gem 'excon'
 gem 'themoviedb-api'
-
+gem 'nokogiri'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
