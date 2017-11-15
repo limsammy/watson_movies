@@ -2,9 +2,16 @@
   <% if movies.present?%>
     <h3> Results for <%= query %></h3>
       <% movies.each do |item| %>
+      <hr>
         <div>
           <p>
-          <%= image_tag item[:image],size: "210x140" %>
+            <% if item[:image].nil? %>
+              <i>
+                No Image Found
+              </i>
+            <% else %>
+              <%= image_tag item[:image],size: "210x140" %>
+            <% end %>
           </p>
           <p>
             Title: <%= item[:display_title]%>
@@ -18,9 +25,15 @@
           <h3>
             Analysis:
           </h3>
+          <% if !Watson.new.get_data(item[:review]).nil? %>
             <% Watson.new.get_data(item[:review]).each do |tone| %>
-              <p><b><%= tone['tone_name'] %>:</b> <%= tone['score'] * 100 %>%</p>
+              <% if item['code'] == 400 %>
+                <i>No Review Given</i>
+              <% else %>
+                <p><b><%= tone['tone_name'] %>:</b> <%= tone['score'] * 100 %>%</p>
+              <% end %>
             <% end %>
+          <% end %>
         </div>
       <%end%>
   <%else%>

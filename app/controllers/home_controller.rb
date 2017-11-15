@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     # @movies = response["results"]
     response["results"].each do |item|
       hash = {}
-      hash[:image] = item["multimedia"]["src"]
+      hash[:image] = item["multimedia"]["src"] if !item["multimedia"].nil?
       hash[:display_title] = item["display_title"]
       hash[:summary_short] = item["summary_short"]
       hash[:review] = get_reviews(item["link"]["url"])
@@ -23,10 +23,13 @@ class HomeController < ApplicationController
   end
 
   def get_movies_data(query)
-    api_key = '678f3e381fea4927b1adc2344f5c2631'
-    uri = URI("https://api.nytimes.com/svc/movies/v2/reviews/search.json?q=" + query + "&&api-key=#{api_key}")
+    uri = URI("https://api.nytimes.com/svc/movies/v2/reviews/search.json")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
+    uri.query = URI.encode_www_form({
+                                      "api-key" => "678f3e381fea4927b1adc2344f5c2631",
+                                      "query" => query
+    })
     request = Net::HTTP::Get.new(uri.request_uri)
     @result = JSON.parse(http.request(request).body)
   end
