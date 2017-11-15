@@ -19,9 +19,21 @@
             Adult: <%= item.adult%>
           </p>
           <p>
-            Reviews: <%= Tmdb::Movie.reviews(item.id) %>
+            <b>Reviews:</b>
+            <br>
+            <% if Tmdb::Movie.reviews(item.id).total_results == 0 %>
+              <i>No reviews found</i>
+            <% else %>
+              <% Tmdb::Movie.reviews(item.id).results.each do |review| %>
+                <b>Author:</b> <%= review.author %><br>
+                <b>Content:</b> <%= review.content %>
+                <br>
+                <br>
+              <% end %>
+            <% end %>
           </p>
         </div>
+            <hr>
       <%end%>
   <%else%>
     <p>
