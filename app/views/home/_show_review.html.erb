@@ -1,0 +1,14 @@
+<% if @result.blank? %>
+  No reviews yet
+<%else%>
+  <%if @analysis.present?%>
+    <h3>Analysis:</h3>
+    <% @analysis.each do |tone| %>
+      <p><b><%= tone['tone_name'] %>:</b> <%= tone['score'] * 100 %>%</p>
+    <% end %>
+  <%else%>
+    No analysis
+  <% end %>
+  <h3>Review</h3>
+  <p><%=@result%></p>
+<% end %>

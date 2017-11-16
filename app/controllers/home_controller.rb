@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   require 'open-uri'
   require 'net/http'
-  # require 'nokogiri'
 
   def index
   end
@@ -10,13 +9,13 @@ class HomeController < ApplicationController
     @movies = []
     @query = params[:query]
     response = get_movies_data(@query)
-    # @movies = response["results"]
     response["results"].each do |item|
       hash = {}
-      hash[:image] = item["multimedia"]["src"] if !item["multimedia"].nil?
+      hash[:image] = item["multimedia"]["src"] unless item["multimedia"].nil?
       hash[:display_title] = item["display_title"]
       hash[:summary_short] = item["summary_short"]
-      hash[:review] = get_reviews(item["link"]["url"])
+      hash[:url] = item["link"]["url"]
+      # hash[:review] = get_reviews(item["link"]["url"])
       @movies << hash
     end
     @movies
@@ -34,13 +33,23 @@ class HomeController < ApplicationController
     @result = JSON.parse(http.request(request).body)
   end
 
-  def get_reviews(url)
+  # def get_reviews(url)
+  #   reviews = []
+  #   html_data = open(url).read
+  #   page = Nokogiri::HTML(html_data, nil, 'utf-8')
+  #   page.css('.story-body-text').each do |link|
+  #     reviews << link.content
+  #   end
+  #   result = reviews.join("")
+  # end
+  def reviews
     reviews = []
-    html_data = open(url).read
+    html_data = open(params[:url]).read
     page = Nokogiri::HTML(html_data, nil, 'utf-8')
     page.css('.story-body-text').each do |link|
       reviews << link.content
     end
-    result = reviews.join("")
+    @result = reviews.join("")
+    @analysis = Watson.new.get_data(reviews.join(""))
   end
 end

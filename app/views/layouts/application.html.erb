@@ -3,12 +3,17 @@
   <head>
     <title>WatsonTonePractice</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class='col-md-2'>
+    </div>
+    <div class='col-md-8'>
+      <%= yield %>
+    </div>
+    <div class='col-md-2'>
+    </div>
   </body>
 </html>
