@@ -1,11 +1,18 @@
-<%=form_tag "/home/search",method: :get, remote: true %>
-  <div>
-    <%=text_field_tag 'query', '', class: 'form-control rangepicker' %>
-  </div>
-<%=submit_tag "Search"%>
-<div id="data_cls">
-  <%= render partial: 'home/result', locals: { movies: @movies, query: @query} %>
-</div>
-<%= render 'reviews_and_analysis' %>
+<br>
+<h1>Movie Tone Analyzer</h1>
+<h4>Built with Watson and NYTimes API</h4>
+<hr>
 
+<br>
+<%=form_tag "/home/search",method: :get, remote: true %>
+  <div align="center">
+    <div>
+      <%=text_field_tag 'query', '', class: 'form-control rangepicker' %>
+    </div>
+    <%=submit_tag "Search Movie Database"%>
+  </div>
+  <div id="data_cls">
+    <%= render partial: 'home/result', locals: { movies: @movies, query: @query} %>
+  </div>
+<%= render 'reviews_and_analysis' %>
 <%#= Watson.new.get_reviews('iron man') %>
