@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+
   require 'open-uri'
   require 'net/http'
 
