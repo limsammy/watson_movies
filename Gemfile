@@ -20,6 +20,7 @@ gem 'nokogiri'
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'jquery-turbolinks'
+gem 'delayed_job_active_record'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
