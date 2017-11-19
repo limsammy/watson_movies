@@ -19,6 +19,7 @@ gem 'themoviedb-api'
 gem 'nokogiri'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'jquery-turbolinks'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
