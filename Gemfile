@@ -14,9 +14,11 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'rest-client'
 gem 'faker'
-gem 'excon'
-gem 'themoviedb-api'
+# gem 'excon'
+# gem 'themoviedb-api'
 gem 'nokogiri'
+gem 'devise'
+gem 'bootstrap-sass'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
